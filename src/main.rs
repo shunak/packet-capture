@@ -87,6 +87,26 @@ fn ipv4_handler(ethernet: &EthernetPacket) {
 }
 
 
+/*
+Construct Ipv6packet and call handler
+*/ 
+fn ipv6_handler(ethernet: &EthernetPacket){
+    if let Some(packet) = Ipv6Packet::new(ethernet.payload()){
+        match packet.get_next_header() {
+            IpNextHeaderProtocols::Tcp => {
+                tcp_handler(&packet);
+            }
+            IpNextHeaderProtocols::Udp => {
+                udp_handler(&packet);
+            }
+            _ => {
+                info!("Not a TCP or UDP packet");
+            }
+        }
+    }
+}
+
+
 
 
 
