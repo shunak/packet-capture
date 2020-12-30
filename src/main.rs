@@ -105,7 +105,15 @@ fn ipv6_handler(ethernet: &EthernetPacket){
         }
     }
 }
-
+/*
+Construct TCP packet
+*/
+fn tcp_handler(packet: &GettableEndPoints){
+    let tcp = TcpPacket::new(packet.get_payload());
+    if let Some(tcp) = tcp {
+        print_packet_info(packet, &tcp, "TCP");
+    }
+}
 
 
 
