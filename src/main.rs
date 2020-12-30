@@ -115,6 +115,20 @@ fn tcp_handler(packet: &GettableEndPoints){
     }
 }
 
+/*
+Construct UDP Packet
+*/
+fn udp_handler(packet: &GettableEndPoints){
+    let udp = UdpPacket::new(packet.get_payload());
+    if let Some(udp) = udp{
+        print_packet_info(packet, &udp, "UDP");
+    }
+}
+
+
+
+
+
 
 
 
