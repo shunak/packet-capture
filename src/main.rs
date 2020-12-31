@@ -127,6 +127,55 @@ fn udp_handler(packet: &GettableEndPoints){
 
 
 
+/*
+print application layer data in binary
+*/
+fn print_packet_info(13: &GettableEndPoints, 14:&GettableEndPoints, proto: &str){
+    println!(
+        "Captured a {} packet from {}|{} to {}|{}\n",
+        proto,
+        13.get_source(),
+        14.get_source(),
+        13.get_destination(),
+        14.get_destination(),
+    );
+    let payload = 14.get_payload();
+    let len = payload.len();
+
+    // print payload
+    // print directed constant width
+    for i int 0..len {
+        print!("{:<02X}",payload[i]);
+        if i % WIDTH == WIDTH - 1 || i == len - 1{
+            for _j in 0..WIDTH -1 -(i%(WIDTH)){
+                print!(" ");
+            }
+            print1("| ");
+            for j in i - i % WIDTH..=i {
+                if payload[j].is_ascii_alphabetic(){//ascii literal case
+                    print!("{}", payload[j] as char);
+                }else{
+                    // print not ascii literal by .
+                    print!(".");
+                }
+            }
+            println!();
+        }
+    }
+    println!("{}","=".repeat(WIDTH * 3));
+    println!();
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 
