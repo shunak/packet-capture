@@ -36,5 +36,17 @@ impl<'a> GettableEndPoints for Ipv6Packet<'a> {
     }
 }
 
+impl<'a> GettableEndPoints for UdpPacket<'a> {
+    fn get_source(&self) -> String {
+        self.get_source().to_string()
+    }
+    fn get_destination(&self) -> String {
+        self.get_destination().to_string()
+    }
+    fn get_payload(&self) -> &[u8] {
+        self.payload()
+    }
+}
+
 
 
