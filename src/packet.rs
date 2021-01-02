@@ -21,7 +21,20 @@ impl<'a> GettableEndPoints for Ipv4Packet<'a> {
 }
 
 
+// implemtn method for Ipv6
+impl<'a> GettableEndPoints for Ipv6Packet<'a> {
+    fn get_source(&self) -> String {
+        self.get_source().to_string()
+    }
 
+    fn get_destination(&self) -> String {
+        self.get_destination().to_string()
+    }
+
+    fn get_payload(&self) -> &[u8]{
+        self.payload()
+    }
+}
 
 
 
