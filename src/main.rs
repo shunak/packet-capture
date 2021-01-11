@@ -4,26 +4,25 @@ use pnet::datalink;
 use pnet::datalink::Channel::Ethernet;
 use pnet::packet::ethernet::{EtherTypes, EthernetPacket};
 use pnet::packet::ipv4::Ipv4Packet;
-use pnet::packet::ipv6::Ipv6packet;
+use pnet::packet::ipv6::Ipv6Packet;
 use pnet::packet::tcp::TcpPacket;
 use pnet::packet::udp::UdpPacket;
 use pnet::packet::ip::IpNextHeaderProtocols;
 use pnet::packet::Packet;
 
 use std::env;
-
 mod packets;
 use packets::GettableEndPoints;
 
-const WIDTH::usize = 20;
+const WIDTH:usize = 20;
 
 
 fn main() {
     env::set_var("RUST_LOG", "debug");
-    env_loggger::init();
+    env_logger::init();
     let args: Vec<String> = env::args().collect();
     if args.len() !=2 {
-        error!("Please specify target interface name")
+        error!("Please specify target interface name");
         std::process::exit(1);
     }
     let interface_name = &args[1];
@@ -37,9 +36,9 @@ fn main() {
     
     // get datalink channel
     let (_tx, mut rx) = match datalink::channel(&interface, Default::default()){
-        Ok(Ethernet(tx,rx)=>(tx,rx),
+        Ok(Ethernet(tx,rx))=>(tx,rx),
         Ok(_) => panic!("Unhandled channel tyep"),
-        Err(e) => panic!("Failed to create datalinl channel {}",e)),
+        Err(e) => panic!("Failed to create datalinl channel {}",e),
     };
     loop {
         match rx.next() {
