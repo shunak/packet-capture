@@ -10,11 +10,10 @@ use pnet::packet::udp::UdpPacket;
 use pnet::packet::ip::IpNextHeaderProtocols;
 use pnet::packet::Packet;
 
-
 use std::env;
 
 mod packets;
-use packets::GettabelEndPoints;
+use packets::GettableEndPoints;
 
 const WIDTH::usize = 20;
 

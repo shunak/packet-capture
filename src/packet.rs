@@ -1,3 +1,6 @@
+libc::socket(libc::PF_INET, luib::SOCK_STREAM, 0);
+
+
 pub trait GettableEndPoints{
     fn get_source(&self) -> String;
     fn get_destination(&self) -> String;
@@ -21,7 +24,7 @@ impl<'a> GettableEndPoints for Ipv4Packet<'a> {
 }
 
 
-// implemtn method for Ipv6
+// implement method for Ipv6
 impl<'a> GettableEndPoints for Ipv6Packet<'a> {
     fn get_source(&self) -> String {
         self.get_source().to_string()
@@ -36,6 +39,7 @@ impl<'a> GettableEndPoints for Ipv6Packet<'a> {
     }
 }
 
+// implement method UDP
 impl<'a> GettableEndPoints for UdpPacket<'a> {
     fn get_source(&self) -> String {
         self.get_source().to_string()
